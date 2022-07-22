@@ -12,3 +12,7 @@
   1. "test": "jest --passWithNoTests" => Se não houver nenhum teste relacionado aos arquivos que foram commitados, a execução deve passar sem erros;
   2. "test:staged": "npm test -- --findRelatedTests" => Vai executar apenas os testes que sejam relacionados aos arquivos que sofreram alterações. A flag '--' serve para herdar o comportamento da script "test". Esse script staged será executado pelo lintstaged para rodar na fase de pre-commit, automatizando o processo, ou seja, sempre que for realizado um commit o script de test:staged será executado validando e executando os testes relacionado aos arquivos modificados;
   3. "test:ci": "npm test -- --coverage" => Ira realizar um test geral na aplicação gerando um arquivo de coverage. Nesse app, esse test foi configurado para realizar esse teste na fase pre-push;
+
+# CAMADAS (LAYERS)
+  1. DOMAIN => Detém as regras de negócio do sistema (São abstrações);
+  2. DATA => Detém a implementação dos casos de uso (useCases) criados na camada de DOMAIN. Não só a implementação mas tbm os testes relacionados
