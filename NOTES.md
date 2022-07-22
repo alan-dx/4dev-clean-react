@@ -2,3 +2,13 @@
   1. git-commit-msg-linter -D => dep de desenvolvimento utilizada para auxiliar nos commits;
   2. husky => Utilizada para executar o lint-staged;
   3. lint-staged => Utilizada para aplicar scripts em arquivos que esteja na área staged (após git add) do git, evitando commit defeituosos. Ela trava o commit que não passar na execução dos scripts definidos em .lintstagedrc.json;
+
+# TESTES
+  ## HUSKY
+    1. Essa lib executa scripts personalizados em fase pré-determinadas, como o pre-commit e pre-push". Por exemplo, na fase pre-push desse projeto foi configurado para que ele rode o script de "test:ci". Em conjunto com outras libs, como o lint-staged, pode ser configurado para que execute um conjunto de scripts;
+   ## LINT-STAGED
+    1. Essa lib, em conjunto com o husky, executa um conjunto de scripts configurados por formato de arquivo em uma determinada fase configurada no husky. Por exemplo, nesse projeto na fase de pre-commit foi configurado (em .lintstagedrc.json) para rodar os scripts de "eslint 'src/**' --fix" e "npm run test:staged" na fase de pre-commit configurado pelo husky (.huskyrc.json)
+
+  1. "test": "jest --passWithNoTests" => Se não houver nenhum teste relacionado aos arquivos que foram commitados, a execução deve passar sem erros;
+  2. "test:staged": "npm test -- --findRelatedTests" => Vai executar apenas os testes que sejam relacionados aos arquivos que sofreram alterações. A flag '--' serve para herdar o comportamento da script "test". Esse script staged será executado pelo lintstaged para rodar na fase de pre-commit, automatizando o processo, ou seja, sempre que for realizado um commit o script de test:staged será executado validando e executando os testes relacionado aos arquivos modificados;
+  3. "test:ci": "npm test -- --coverage" => Ira realizar um test geral na aplicação gerando um arquivo de coverage. Nesse app, esse test foi configurado para realizar esse teste na fase pre-push;
