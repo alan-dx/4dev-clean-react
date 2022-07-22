@@ -1,3 +1,4 @@
+import { UnexpectedError } from '@/domain/errors/unexpected-error'
 import { RemoteAuthenticaiton } from './remote-authentication'
 import { HttpPostClientSpy } from '@/data/test/mock-http-client'
 import { HttpStatusCode } from '@/data/protocols/http/http-response'
@@ -40,11 +41,44 @@ describe('RemoteAuthentication', () => {
   test('Should throw InvalidCredentialsError if HttpPostClient returns 401', async () => {
     const { sut, httpPostClientSpy } = makeSut()
 
-    httpPostClientSpy.response = { // Simulando o erro 401
+    httpPostClientSpy.response = {
       statusCode: HttpStatusCode.unauthorized
     }
 
     const promise = sut.auth(mockAuthentication())// Para testar um excessão lançada por uma promise remove o await e armazena em uma variavel
     await expect(promise).rejects.toThrow(new InvalidCredentialsError())// .rejects captura o reject da promise
+  })
+
+  test('Should throw UnexpectedError if HttpPostClient returns 400', async () => {
+    const { sut, httpPostClientSpy } = makeSut()
+
+    httpPostClientSpy.response = { // Simulando o erro 401
+      statusCode: HttpStatusCode.badRequest
+    }
+
+    const promise = sut.auth(mockAuthentication())// Para testar um excessão lançada por uma promise remove o await e armazena em uma variavel
+    await expect(promise).rejects.toThrow(new UnexpectedError())// .rejects captura o reject da promise
+  })
+
+  test('Should throw UnexpectedError if HttpPostClient returns 500', async () => {
+    const { sut, httpPostClientSpy } = makeSut()
+
+    httpPostClientSpy.response = { // Simulando o erro 401
+      statusCode: HttpStatusCode.serverError
+    }
+
+    const promise = sut.auth(mockAuthentication())// Para testar um excessão lançada por uma promise remove o await e armazena em uma variavel
+    await expect(promise).rejects.toThrow(new UnexpectedError())// .rejects captura o reject da promise
+  })
+
+  test('Should throw UnexpectedError if HttpPostClient returns 404', async () => {
+    const { sut, httpPostClientSpy } = makeSut()
+
+    httpPostClientSpy.response = {
+      statusCode: HttpStatusCode.notFound
+    }
+
+    const promise = sut.auth(mockAuthentication())// Para testar um excessão lançada por uma promise remove o await e armazena em uma variavel
+    await expect(promise).rejects.toThrow(new UnexpectedError())// .rejects captura o reject da promise
   })
 })
