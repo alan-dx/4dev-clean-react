@@ -2,17 +2,19 @@ import { UnexpectedError } from '@/domain/errors/unexpected-error'
 import { RemoteAuthenticaiton } from './remote-authentication'
 import { HttpPostClientSpy } from '@/data/test/mock-http-client'
 import { HttpStatusCode } from '@/data/protocols/http/http-response'
-import faker from 'faker'
 import { InvalidCredentialsError } from '@/domain/errors/invalid-credentials-error'
 import { mockAuthentication } from '@/domain/test/mock-autentication'
+import { AuthenticationParams } from '@/domain/usecases/authentication'
+import { AccountModel } from '@/domain/models/account-model'
+import faker from 'faker'
 
 type SutTypes = {
   sut: RemoteAuthenticaiton
-  httpPostClientSpy: HttpPostClientSpy
+  httpPostClientSpy: HttpPostClientSpy<AuthenticationParams, AccountModel>
 }
 
 const makeSut = (url: string = faker.internet.url()): SutTypes => {
-  const httpPostClientSpy = new HttpPostClientSpy()
+  const httpPostClientSpy = new HttpPostClientSpy<AuthenticationParams, AccountModel>()
   const sut = new RemoteAuthenticaiton(url, httpPostClientSpy) // sut === system under test. A inhenção de dependência ocorre quando passo a instância do HttpPostClient para o RemoteAuthentication
 
   return {
