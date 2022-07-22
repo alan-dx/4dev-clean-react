@@ -15,10 +15,8 @@ module.exports = {
   testEnvironment: 'node',
   transform: {
     '.+\\.(ts|tsx)$': 'ts-jest'// Antes de executar o teste o jest vai converter todos os arquivos ts e tsx para ts-jest
+  },
+  moduleNameMapper: {
+    '@/(.*)': '<rootDir>/src/$1' // Mapeando os arquivos para o jest interpretar a modularização das paths feita com TS
   }
-  // moduleNameMapper: {
-  //   '@/tests/(.*)': '<rootDir>/tests/$1',
-  //   '@/(.*)': '<rootDir>/src/$1',
-  //   '\\.scss$': 'identity-obj-proxy'
-  // }
 }

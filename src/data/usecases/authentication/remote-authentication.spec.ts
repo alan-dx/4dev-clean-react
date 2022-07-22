@@ -1,5 +1,5 @@
-import { mockAuthentication } from './../../../domain/test/mock-autentication'
-import { HttpPostClientSpy } from './../../test/mock-http-client'
+import { mockAuthentication } from '@/domain/test/mock-autentication'
+import { HttpPostClientSpy } from '@/data/test/mock-http-client'
 import { RemoteAuthenticaiton } from './remote-authentication'
 import faker from 'faker'
 
@@ -10,7 +10,7 @@ type SutTypes = {
 
 const makeSut = (url: string = faker.internet.url()): SutTypes => {
   const httpPostClientSpy = new HttpPostClientSpy()
-  const sut = new RemoteAuthenticaiton(url, httpPostClientSpy) // sut === system under test
+  const sut = new RemoteAuthenticaiton(url, httpPostClientSpy) // sut === system under test. A inhenção de dependência ocorre quando passo a instância do HttpPostClient para o RemoteAuthentication
 
   return {
     sut,
