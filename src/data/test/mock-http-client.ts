@@ -1,6 +1,4 @@
-import { HttpStatusCode } from './../protocols/http/http-response'
-import { HttpResponse } from '@/data/protocols/http/http-response'
-import { HttpPostParams, HttpPostClient } from '@/data/protocols/http/http-post-client'
+import { HttpPostParams, HttpPostClient, HttpResponse, HttpStatusCode } from '@/data/protocols/http'
 
 export class HttpPostClientSpy<T, R> implements HttpPostClient<T, R> {// Spy é um dublê que implementa o protocolo HttpPostClient, o objetivo é testar apenas a unidade RemoteAuthentication
   url?: string
