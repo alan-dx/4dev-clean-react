@@ -14,7 +14,7 @@ type SutTypes = {
 
 const makeSut = (url: string = faker.internet.url()): SutTypes => {
   const httpPostClientSpy = new HttpPostClientSpy<AuthenticationParams, AccountModel>()
-  const sut = new RemoteAuthenticaiton(url, httpPostClientSpy) // sut === system under test. A inhenção de dependência ocorre quando passo a instância do HttpPostClient para o RemoteAuthentication
+  const sut = new RemoteAuthenticaiton(url, httpPostClientSpy) // sut === system under test. A injeção de dependência ocorre quando passo a instância do HttpPostClient para o RemoteAuthentication
 
   return {
     sut,
