@@ -12,7 +12,7 @@ module.exports = {
   //   '<rootDir>/node_modules/',
   //   '<rootDir>/tests/e2e/cypress'
   // ],
-  testEnvironment: 'node',
+  testEnvironment: 'jsdom', // O ambiente de teste na web, obviamente, utiliza o jsdom ao invés do jest
   transform: {
     '.+\\.(ts|tsx)$': 'ts-jest'// Antes de executar o teste o jest vai converter todos os arquivos ts e tsx para ts-jest
   },
