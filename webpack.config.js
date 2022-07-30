@@ -37,9 +37,11 @@ module.exports = {
     }]
   },
   devServer: { // devServer é quem vai rodar o servidor de desenvolvimento com a aplicação rodando
-    contentBase: './public', // Indicando qual a pasta que contém a base do projeto, ou seja, o local que contém os arquivos compilados que dever ser utilizado pelo devServer
-    writeToDisk: true, // Escreve o bundle.js no disco ao invés de apenas na memória (default)
-    historyApiFallback: true // Para as diferentes rotas funcionarem
+    static: './public', // Indicando qual a pasta que contém a base do projeto, ou seja, o local que contém os arquivos compilados que dever ser utilizado pelo devServer
+    historyApiFallback: true, // Para as diferentes rotas funcionarem
+    devMiddleware: {
+      writeToDisk: true // Escreve o bundle.js no disco ao invés de apenas na memória (default)
+    }
   },
   externals: { // Informando quais dependências serão importadas externamente, ou seja, não compiladas para o bundle
     react: 'React',
