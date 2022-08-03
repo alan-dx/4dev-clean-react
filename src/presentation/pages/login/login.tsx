@@ -3,9 +3,11 @@ import Styles from './login-styles.scss'
 import { Footer, LoginHeader, FormStatus, Input } from '@/presentation/components'
 import Context from '@/presentation/contexts/form/form-context'
 import { Validation } from '@/presentation/protocols/validation'
+import { Authentication } from '@/domain/usecases'
 
 type Props = {
   validation: Validation
+  authentication: Authentication
 }
 
 const Login: React.FC<Props> = (props) => {
@@ -26,9 +28,10 @@ const Login: React.FC<Props> = (props) => {
     })
   }, [state.email, state.password])
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>): Promise<void> {
     event.preventDefault()
     setState({ ...state, isLoading: true })
+    await props.authentication.auth({ email: state.email, password: state.password })
   }
 
   return (
