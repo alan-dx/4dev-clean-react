@@ -6,6 +6,9 @@ import { RequiredFieldValidation, EmailValidation, MinLengthValidation } from '@
 // Assim só é possivel instanciar essa classe acessando o método static field. new ValidationBuilder() não é permitido
 
 export class ValidationBuilder {// Builder Design Pattern
+  // O ValidationBuilder tem como objetivo facilitar a construção dos FieldValidations
+  // Com o builder será mais fácil aplicar os validadores desejado no campo, uma vez q o objetivo
+  // É agrupar todos os validadores em um único lugar e utilizar métodos que vão retornar-los
   private constructor(
     private readonly fieldName: string,
     private readonly validations: FieldValidation[]
