@@ -4,6 +4,8 @@ module.exports = {
     '<rootDir>/src/**/*.{ts,tsx}', // Coletar o coverage de dentro da pasta src, aplicando para qualquer arquivo
     '!<rootDir>/src/main/**/*',
     '!<rootDir>/src/presentation/components/router/**/*',
+    '!<rootDir>/src/domain/usecases/**/*',
+    '!<rootDir>/src/domain/models/**/*',
     // '!<rootDir>/src/**/index.ts',
     '!**/*.d.ts' // Não fazer coverage de arquivos d.ts
   ],

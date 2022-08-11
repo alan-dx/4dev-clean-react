@@ -4,7 +4,7 @@ import { createMemoryHistory } from 'history'
 import faker from 'faker'
 import 'jest-localstorage-mock'
 import { render, RenderResult, fireEvent } from '@testing-library/react'
-import Login from './login'
+import { Login } from '@/presentation/pages'
 import { ValidationStub, AuthenticationSpy } from '@/presentation/test/index'
 
 type SutTypes = {
