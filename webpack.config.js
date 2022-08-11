@@ -1,4 +1,5 @@
 const path = require('path')
+const { DefinePlugin } = require('webpack')// Utilizado para definir as variáveis ambientes
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')// Recomendação da comunidade
 
 module.exports = {
@@ -48,6 +49,9 @@ module.exports = {
     'react-dom': 'ReactDOM'
   },
   plugins: [
-    new CleanWebpackPlugin()
+    new CleanWebpackPlugin(),
+    new DefinePlugin({ // Definindo as variáveis ambiente do sistema
+      'process.env.API_URL': 'http://fordevs.herokuapp.com/api'
+    })
   ]
 }
