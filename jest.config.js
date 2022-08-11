@@ -2,7 +2,8 @@ module.exports = {
   roots: ['<rootDir>/src'], // Diretório raiz do jest
   collectCoverageFrom: [
     '<rootDir>/src/**/*.{ts,tsx}', // Coletar o coverage de dentro da pasta src, aplicando para qualquer arquivo
-    // '!<rootDir>/src/main/**/*',
+    '!<rootDir>/src/main/**/*',
+    '!<rootDir>/src/presentation/components/router/**/*',
     // '!<rootDir>/src/**/index.ts',
     '!**/*.d.ts' // Não fazer coverage de arquivos d.ts
   ],
