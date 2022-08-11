@@ -7,5 +7,5 @@ export const makeRemoteAuthentication = (): Authentication => {
   // A camada main faz a comunicação entre todos os componentes
   // makeLogin é responsável por injetar as dependências do Login
 
-  return new RemoteAuthenticaiton(makeApiUrl(), makeAxiosHttpClient())
+  return new RemoteAuthenticaiton(makeApiUrl('/login'), makeAxiosHttpClient())
 }
