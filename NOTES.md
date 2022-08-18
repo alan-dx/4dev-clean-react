@@ -1,6 +1,6 @@
 # LIBS
   1. git-commit-msg-linter -D => dep de desenvolvimento utilizada para auxiliar nos commits;
-  2. husky => Utilizada para executar o lint-staged;
+  2. husky => Utilizada para executar o lint-staged w oa git hooks;
   3. lint-staged => Utilizada para aplicar scripts em arquivos que esteja na área staged (após git add) do git, evitando commit defeituosos. Ela trava o commit que não passar na execução dos scripts definidos em .lintstagedrc.json;
 
 # TESTES
@@ -20,3 +20,12 @@
 # WEBPACK
   1. Webpack é quem faz o bundle da aplicação, gerando o bundle.js com todo o código fonte da App. Além disso, com o WebPack dev Server ele irá levantar um servidor local de desenvolvimento;
   2. Loaders => O webpack utilizar os loaders de cada formato de arquivo para converter os arquivos que ele irá tratar;
+
+# TRAVIS CI
+  1. Ferramenta online para implementação de fluxos de ci para executar comandos e scripts de teste;
+   
+# COVERALLS
+  1. Ferramenta online que armazena todos os coverages do projeto;
+
+# SCRIPTS
+  - "check-update": "yarn upgrade-interactive --latest" => Ferramenta que verifica se as dependências estão atualizadas
