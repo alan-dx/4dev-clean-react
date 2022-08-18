@@ -6,7 +6,7 @@ module.exports = {
     '!<rootDir>/src/presentation/components/router/**/*',
     '!<rootDir>/src/domain/usecases/**/*',
     '!<rootDir>/src/domain/models/**/*',
-    // '!<rootDir>/src/**/index.ts',
+    '!<rootDir>/src/**/index.ts',
     '!**/*.d.ts' // Não fazer coverage de arquivos d.ts
   ],
   coverageDirectory: 'coverage', // Pasta onde os dados de coverage serão salvos
