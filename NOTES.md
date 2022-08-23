@@ -15,7 +15,9 @@
 
 # CAMADAS (LAYERS)
   1. DOMAIN => Detém as regras de negócio do sistema (São abstrações);
-  2. DATA => Detém a implementação dos casos de uso (useCases) criados na camada de DOMAIN. Não só a implementação mas tbm os testes relacionados
+  2. DATA => Detém a implementação dos casos de uso (useCases) criados na camada de DOMAIN. Não só a implementação mas tbm os testes 
+
+  ## Exceto na camada de domain, em todas as camadas a comunicação entre elas (cross boundaries) será feita por meio de protocolos
 
 # WEBPACK
   1. Webpack é quem faz o bundle da aplicação, gerando o bundle.js com todo o código fonte da App. Além disso, com o WebPack dev Server ele irá levantar um servidor local de desenvolvimento;

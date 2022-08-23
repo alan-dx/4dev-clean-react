@@ -3,12 +3,13 @@ import Styles from './login-styles.scss'
 import { Footer, LoginHeader, FormStatus, Input } from '@/presentation/components'
 import Context from '@/presentation/contexts/form/form-context'
 import { Validation } from '@/presentation/protocols/validation'
-import { Authentication } from '@/domain/usecases'
+import { Authentication, SaveAccessToken } from '@/domain/usecases'
 import { Link, useHistory } from 'react-router-dom'
 
 type Props = {
   validation: Validation
   authentication: Authentication
+  saveAccessToken: SaveAccessToken
 }
 
 const Login: React.FC<Props> = (props) => {
@@ -38,7 +39,8 @@ const Login: React.FC<Props> = (props) => {
       }
       setState({ ...state, isLoading: true })
       const account = await props.authentication.auth({ email: state.email, password: state.password })
-      localStorage.setItem('accessToken', account.accessToken)
+      await props.saveAccessToken.save(account.accessToken)
+      // localStorage.setItem('accessToken', account.accessToken)
       history.replace('/')
     } catch (error) {
       setState({ ...state, isLoading: false, mainError: error.message })
