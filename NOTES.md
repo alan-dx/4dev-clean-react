@@ -34,3 +34,6 @@
   1. STUB = Apenas retorna os valores, sem setar os valores providos pelos parâmetros;
   2. SPY = Retorna os valores e seta os valores providos pelos parâmetros;
   3. MOCK = Apenas seta os valores sem retornar nada
+
+# ADAPTER DESIGN PATTERN
+  1. Adapta duas interfaces/métodos/implementações que tem uma mesma finalidade porém suas formas de trabalhar são distintas;
