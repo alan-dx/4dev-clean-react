@@ -3,6 +3,7 @@ import { SaveAccessToken } from '@/domain/usecases/save-access-token'
 
 export class LocalSaveAccessToken implements SaveAccessToken {
   constructor (private readonly setStorage: SetStorage) { // implementa o protocolo SetStorage para realizar a injeção de dependência
+    // A setinha pequena do desenho
   }
 
   async save (accessToken: string): Promise<void> {
