@@ -29,3 +29,8 @@
 
 # SCRIPTS
   - "check-update": "yarn upgrade-interactive --latest" => Ferramenta que verifica se as dependências estão atualizadas
+
+# STUB, MOCK, SPY
+  1. STUB = Apenas retorna os valores, sem setar os valores providos pelos parâmetros;
+  2. SPY = Retorna os valores e seta os valores providos pelos parâmetros;
+  3. MOCK = Apenas seta os valores sem retornar nada
