@@ -17,7 +17,7 @@ type SutParams = {
   validationError: string
 }
 
-const history = createMemoryHistory()
+const history = createMemoryHistory({ initialEntries: ['/'] })
 const makeSut = (params?: SutParams): SutTypes => {
   const validationStub = new ValidationStub()
   const authenticationSpy = new AuthenticationSpy()
@@ -166,7 +166,7 @@ describe('Login Component', () => {
   //   jest.spyOn(authenticationSpy, 'auth').mockRejectedValueOnce(Promise.reject(error))// Mockando o método auth do Spy do authentication
   //   simulateValidSubmit(sut)
   //   const errorWrap = sut.getByTestId('error-wrap')
-  //   await waitFor(() => errorWrap)
+  //   await waitFor(() => errorWrap)//Aguarda o componente sofrer um render
   //   const mainError = sut.getByTestId('main-error')
   //   expect(mainError.textContent).toBe(error.message)
   //   expect(errorWrap.childElementCount).toBe(1)
