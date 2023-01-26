@@ -2,7 +2,7 @@ import { HttpStatusCode } from './../../protocols/http/http-response'
 import { HttpPostClient } from '@/data/protocols/http'
 import { AccountModel } from '@/domain/models'
 import { AddAccount, AddAccountParams } from '@/domain/usecases'
-import { EmailInUseError } from '@/domain/errors'
+import { EmailInUseError, UnexpectedError } from '@/domain/errors'
 
 export class RemoteAddAccount implements AddAccount {
   constructor (private readonly url: string, private readonly httpPostClient: HttpPostClient<AddAccountParams, AccountModel>) {
@@ -13,9 +13,9 @@ export class RemoteAddAccount implements AddAccount {
     // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
     const response = await this.httpPostClient.post({ url: this.url, body: params })
     switch (response.statusCode) {
-      // case HttpStatusCode.ok: return response.body
+      case HttpStatusCode.ok: return null
       case HttpStatusCode.forbidden: throw new EmailInUseError()
-      default: return null
+      default: throw new UnexpectedError()
     }
   }
 }
