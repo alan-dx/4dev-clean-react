@@ -1,6 +1,8 @@
+import { HttpStatusCode } from './../../protocols/http/http-response'
 import { HttpPostClient } from '@/data/protocols/http'
 import { AccountModel } from '@/domain/models'
 import { AddAccount, AddAccountParams } from '@/domain/usecases'
+import { EmailInUseError } from '@/domain/errors'
 
 export class RemoteAddAccount implements AddAccount {
   constructor (private readonly url: string, private readonly httpPostClient: HttpPostClient<AddAccountParams, AccountModel>) {
@@ -9,8 +11,11 @@ export class RemoteAddAccount implements AddAccount {
 
   async add (params: AddAccountParams): Promise<AccountModel> {
     // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
-    const account: AccountModel = {} as AccountModel
-    await this.httpPostClient.post({ url: this.url, body: params })
-    return Promise.resolve(account)
+    const response = await this.httpPostClient.post({ url: this.url, body: params })
+    switch (response.statusCode) {
+      // case HttpStatusCode.ok: return response.body
+      case HttpStatusCode.forbidden: throw new EmailInUseError()
+      default: return null
+    }
   }
 }
