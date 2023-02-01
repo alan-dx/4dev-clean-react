@@ -17,7 +17,7 @@ export const testStatusForField = (sut: RenderResult, fieldName: string, validat
   expect(fieldElement.textContent).toBe(validationError ? '🔴' : '🟢')
 }
 
-export const populateEmailField = (sut: RenderResult, fieldName: string, value = faker.random.word()): void => {
+export const populateField = (sut: RenderResult, fieldName: string, value = faker.random.word()): void => {
   const input = sut.getByTestId(fieldName)
   fireEvent.input(input, { target: { value } })
 }
