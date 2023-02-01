@@ -3,6 +3,8 @@ import faker from 'faker'
 import SignUp from '@/presentation/pages/signup/signup'
 import { RenderResult, render } from '@testing-library/react'
 import { Helper, ValidationStub } from '@/presentation/test'
+import { Router } from 'react-router-dom'
+import { createMemoryHistory } from 'history'
 
 type SutTypes = {
   sut: RenderResult
@@ -12,13 +14,16 @@ type SutParams = {
   validationError: string
 }
 
+const history = createMemoryHistory({ initialEntries: ['/signup'] })
 const makeSut = (params?: SutParams): SutTypes => {
   const validationStub = new ValidationStub()
   validationStub.errorMessage = params?.validationError
   const sut = render(
-    <SignUp
-      validation={validationStub}
-    />
+    <Router history={history} >
+      <SignUp
+        validation={validationStub}
+      />
+    </Router>
   )
 
   return {
