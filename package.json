@@ -9,7 +9,8 @@
     "test:watch": "yarn test -- --watch",
     "test:staged": "yarn test -- --findRelatedTests",
     "test:ci": "yarn test -- --coverage",
-    "test:coveralls": "yarn test:ci && coveralls < coverage/lcov.info"
+    "test:coveralls": "yarn test:ci && coveralls < coverage/lcov.info",
+    "test:cypress": "cypress open"
   },
   "keywords": [],
   "author": "",
@@ -50,8 +51,11 @@
     "webpack-dev-server": "^4.9.3"
   },
   "dependencies": {
+    "@cypress/webpack-preprocessor": "5.4.1",
     "@types/react-router-dom": "^5.3.3",
     "axios": "^0.27.2",
+    "cypress": "4.6.0",
+    "eslint-plugin-cypress": "2.10.3",
     "faker": "4.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
