@@ -5,7 +5,7 @@ import { AddAccount, AddAccountParams } from '@/domain/usecases'
 import { EmailInUseError, UnexpectedError } from '@/domain/errors'
 
 export class RemoteAddAccount implements AddAccount {
-  constructor (private readonly url: string, private readonly httpPostClient: HttpPostClient<AddAccountParams, AccountModel>) {
+  constructor (private readonly url: string, private readonly httpPostClient: HttpPostClient<AccountModel>) {
 
   }
 

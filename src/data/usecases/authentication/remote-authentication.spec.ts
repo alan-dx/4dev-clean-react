@@ -3,17 +3,16 @@ import { HttpPostClientSpy } from '@/data/test'
 import { HttpStatusCode } from '@/data/protocols/http'
 import { InvalidCredentialsError, UnexpectedError } from '@/domain/errors'
 import { mockAccountModel, mockAuthentication } from '@/domain/test'
-import { AuthenticationParams } from '@/domain/usecases'
 import { AccountModel } from '@/domain/models'
 import faker from 'faker'
 
 type SutTypes = {
   sut: RemoteAuthenticaiton
-  httpPostClientSpy: HttpPostClientSpy<AuthenticationParams, AccountModel>
+  httpPostClientSpy: HttpPostClientSpy<AccountModel>
 }
 
 const makeSut = (url: string = faker.internet.url()): SutTypes => {
-  const httpPostClientSpy = new HttpPostClientSpy<AuthenticationParams, AccountModel>()
+  const httpPostClientSpy = new HttpPostClientSpy<AccountModel>()
   const sut = new RemoteAuthenticaiton(url, httpPostClientSpy) // sut === system under test. A injeção de dependência ocorre quando passo a instância do HttpPostClient para o RemoteAuthentication
 
   return {
