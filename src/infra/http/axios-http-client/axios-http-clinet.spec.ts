@@ -1,7 +1,7 @@
 import { mockHttpResponse } from './../test/mock-axios'
 import { AxiosHttpClient } from './axios-http-client'
 import { mockAxios } from '../test'
-import { mockPostRequest } from '@/data/test'
+import { mockGetRequest, mockPostRequest } from '@/data/test'
 import axios from 'axios'
 
 jest.mock('axios')// Mockando a lib axios
@@ -43,6 +43,15 @@ describe('AxiosHttpClient', () => {
       })
       const promise = sut.post(mockPostRequest())
       expect(promise).toEqual(mockedAxios.post.mock.results[0].value)// mockedAxios.post.mock.results[0].value => pegando o valor que foi mockado para o resolve do post em mock-axios.post
+    })
+  })
+
+  describe('get', () => {
+    test('Should call axios.get with correct values', async () => {
+      const request = mockGetRequest()
+      const { sut, mockedAxios } = makeSut()
+      await sut.get(request)
+      expect(mockedAxios.get).toHaveBeenCalledWith(request.url)
     })
   })
 })

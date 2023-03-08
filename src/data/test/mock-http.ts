@@ -7,6 +7,10 @@ export const mockPostRequest = (): HttpPostParams => ({
   body: faker.random.objectElement()
 })
 
+export const mockGetRequest = (): HttpGetParams => ({
+  url: faker.internet.url()
+})
+
 export class HttpPostClientSpy<R> implements HttpPostClient<R> {// Spy é um dublê que implementa o protocolo HttpPostClient, o objetivo é testar apenas a unidade RemoteAuthentication
   url?: string
   body?: any
